@@ -1,20 +1,20 @@
-import React from "react";
+import React from 'react';
 import {
   Grid,
   Typography,
   AppBar,
   Toolbar,
   Box,
-  IconButton
-} from "@material-ui/core";
-import { Brightness7, Brightness4 } from "@material-ui/icons";
+  IconButton,
+} from '@material-ui/core';
+import { Brightness7, Brightness4 } from '@material-ui/icons';
 
-export default function Header({ darkMode, setDarkMode }) {
+const Header = ({ darkMode, setDarkMode }) => {
   return (
     <AppBar position="static">
       <Toolbar>
         <Grid justify="space-between" container>
-          <Grid item style={{ alignSelf: "center" }}>
+          <Grid item style={{ alignSelf: 'center' }}>
             <Typography variant="h6">
               <Box fontWeight="fontWeightBold">Logo</Box>
             </Typography>
@@ -34,4 +34,5 @@ export default function Header({ darkMode, setDarkMode }) {
       </Toolbar>
     </AppBar>
   );
-}
+};
+export default Header;
