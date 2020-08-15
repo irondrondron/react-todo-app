@@ -9,7 +9,6 @@ import {
 } from '@material-ui/core';
 import { Brightness7, Brightness4 } from '@material-ui/icons';
 
-
 const Header = ({ darkMode, setDarkMode }) => {
   return (
     <AppBar position="sticky">
@@ -20,7 +19,6 @@ const Header = ({ darkMode, setDarkMode }) => {
               <Box fontWeight="fontWeightBold">Logo</Box>
             </Typography>
           </Grid>
-          <Grid item></Grid>
           <Grid item>
             <IconButton
               color="inherit"
