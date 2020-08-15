@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import TodoForm from './TodoForm';
-import { Container } from '@material-ui/core';
-import Todo from './Todo';
 import TodoTabs from './TodoTabs';
+import TodoAll from './TodoAll';
+import TodoActive from './TodoActive';
+import TodoComplete from './TodoComplete';
 
 const TodoList = () => {
   const [state, setState] = useState({ todos: [] });
@@ -28,29 +31,59 @@ const TodoList = () => {
     }));
   };
 
+  const handleDeleteTodo = (id) => {
+    setState((state) => ({
+      todos: state.todos.filter((todo) => todo.id !== id),
+    }));
+  };
+
   return (
     <div>
       <TodoForm onSubmit={addTodo} />
-      <Container
-        fixed
-        style={{ padding: '20px', width: '100%', marginBottom: '56px' }}
-      >
-        {state.todos.map((todo) => (
-          <Todo
-            key={todo.id}
-            toggleComplete={() => toggleComplete(todo.id)}
-            text={state.todos}
-            todo={todo}
-            complete={todo.complete}
+      <Router>
+        <Switch>
+          <Route
+            exact
+            path="/"
+            render={(props) => (
+              <TodoAll
+                {...props}
+                state={state}
+                toggleComplete={toggleComplete}
+                handleDeleteTodo={handleDeleteTodo}
+              />
+            )}
           />
-        ))}
-      </Container>
-      <TodoTabs
-        allTodosLength={state.todos.filter((todo) => todo).length}
-        activeLength={state.todos.filter((todo) => !todo.complete).length}
-        completeLength={state.todos.filter((todo) => todo.complete).length}
-        complete={state.todos.filter((todo) => todo.complete)}
-      />
+          <Route
+            exact
+            path="/active"
+            render={(props) => (
+              <TodoActive
+                {...props}
+                state={state}
+                toggleComplete={toggleComplete}
+                handleDeleteTodo={handleDeleteTodo}
+              />
+            )}
+          />
+          <Route
+            path="/complete"
+            render={(props) => (
+              <TodoComplete
+                {...props}
+                state={state}
+                toggleComplete={toggleComplete}
+                handleDeleteTodo={handleDeleteTodo}
+              />
+            )}
+          />
+        </Switch>
+        <TodoTabs
+          allTodosLength={state.todos.filter((todo) => todo).length}
+          activeLength={state.todos.filter((todo) => !todo.complete).length}
+          completeLength={state.todos.filter((todo) => todo.complete).length}
+        />
+      </Router>
     </div>
   );
 };
