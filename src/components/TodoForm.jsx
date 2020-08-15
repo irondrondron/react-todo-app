@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 import shortid from 'shortid';
-import {
-  Paper,
-  Grid,
-  // IconButton,
-  // InputBase,
-  TextField,
-} from '@material-ui/core';
+import { Paper, Grid, TextField } from '@material-ui/core';
 
 const TodoForm = (props) => {
   const [state, setState] = useState({ text: '' });
@@ -25,7 +19,7 @@ const TodoForm = (props) => {
       complete: false,
     });
     setState({
-      text: "",
+      text: '',
     });
   };
 
