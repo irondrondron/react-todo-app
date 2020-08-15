@@ -9,13 +9,12 @@ import {
 } from '@material-ui/core';
 
 const TodoForm = (props) => {
-  const [state, setState] = useState({text: ''});
+  const [state, setState] = useState({ text: '' });
 
   const handleChange = (event) => {
     setState({
       [event.target.name]: event.target.value,
     });
-    // console.log(setState());
   };
 
   const handleSubmit = (e) => {
@@ -26,7 +25,7 @@ const TodoForm = (props) => {
       complete: false,
     });
     setState({
-      text: '',
+      text: "",
     });
   };
 
@@ -34,18 +33,17 @@ const TodoForm = (props) => {
     <Paper>
       <Grid justify="space-around" container>
         <Grid item>
-            <form autoComplete='off' onSubmit={handleSubmit}>
-              <TextField
-                autoComplete="off"
-                name="text"
-                // value={state.text}
-                value={state.text}
-                onChange={handleChange}
-                margin="normal"
-                label="Input todo..."
-                style={{ width: '85vw' }}
-              />
-            </form>
+          <form autoComplete="off" onSubmit={handleSubmit}>
+            <TextField
+              autoComplete="off"
+              name="text"
+              value={state.text}
+              onChange={handleChange}
+              margin="normal"
+              label="Input todo..."
+              style={{ width: '85vw' }}
+            />
+          </form>
         </Grid>
       </Grid>
     </Paper>

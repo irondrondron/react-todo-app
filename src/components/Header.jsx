@@ -9,9 +9,10 @@ import {
 } from '@material-ui/core';
 import { Brightness7, Brightness4 } from '@material-ui/icons';
 
+
 const Header = ({ darkMode, setDarkMode }) => {
   return (
-    <AppBar position="static">
+    <AppBar position="sticky">
       <Toolbar>
         <Grid justify="space-between" container>
           <Grid item style={{ alignSelf: 'center' }}>

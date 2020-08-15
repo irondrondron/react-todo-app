@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import TodoForm from './TodoForm';
+import { Container } from '@material-ui/core';
 import Todo from './Todo';
-// import { Paper } from '@material-ui/core';
+import TodoTabs from './TodoTabs';
 
 const TodoList = () => {
   const [state, setState] = useState({ todos: [] });
@@ -30,14 +31,26 @@ const TodoList = () => {
   return (
     <div>
       <TodoForm onSubmit={addTodo} />
-      {state.todos.map((todo) => (
-        <Todo
-          key={todo.id}
-          toggleComplete={() => toggleComplete(todo.id)}
-          todo={todo}
-        />
-        // <Paper key={todo.id}>{todo.text}</Paper>
-      ))}
+      <Container
+        fixed
+        style={{ padding: '20px', width: '100%', marginBottom: '56px' }}
+      >
+        {state.todos.map((todo) => (
+          <Todo
+            key={todo.id}
+            toggleComplete={() => toggleComplete(todo.id)}
+            text={state.todos}
+            todo={todo}
+            complete={todo.complete}
+          />
+        ))}
+      </Container>
+      <TodoTabs
+        allTodosLength={state.todos.filter((todo) => todo).length}
+        activeLength={state.todos.filter((todo) => !todo.complete).length}
+        completeLength={state.todos.filter((todo) => todo.complete).length}
+        complete={state.todos.filter((todo) => todo.complete)}
+      />
     </div>
   );
 };
