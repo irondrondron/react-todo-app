@@ -21,11 +21,11 @@ const useStyles = makeStyles({
 });
 
 const TodoTabs = (props) => {
-  const classes = useStyles();
+  const classes = useStyles(0);
   const [value, setValue] = useState(0);
+
   return (
     <div>
-      <div>{props.complete}</div>
       <BottomNavigation
         value={value}
         onChange={(event, newValue) => {
