@@ -42,9 +42,8 @@ const Todo = (props) => {
             alignSelf: 'center',
             textAlign: 'center',
           }}
-          onClick={props.onDelete}
         >
-          <IconButton color="secondary" onClick={props.handleDeleteTodo}>
+          <IconButton color="secondary" onClick={props.onDelete}>
             <DeleteForeverIcon />
           </IconButton>
         </Box>
