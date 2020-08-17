@@ -13,6 +13,7 @@ const TodoActive = (props) => {
           <Todo
             key={todo.id}
             toggleComplete={() => props.toggleComplete(todo.id)}
+            onDelete={() => props.handleDeleteTodo(todo.id)}
             todo={todo}
             complete={todo.complete}
           />
