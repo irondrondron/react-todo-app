@@ -36,7 +36,7 @@ const TodoTabs = (props) => {
       >
         <BottomNavigationAction
           component={Link}
-          to={'/'}
+          to={'/all'}
           label="All Todos"
           icon={
             <Badge badgeContent={props.allTodosLength} color="secondary">

@@ -44,7 +44,7 @@ const TodoList = () => {
         <Switch>
           <Route
             exact
-            path="/"
+            path="/all"
             render={(props) => (
               <TodoAll
                 {...props}
