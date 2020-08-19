@@ -12,6 +12,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 
 import ProtectedRoute from './components/ProtectedRoute';
+import StartPage from './components/StartPage';
 
 export default function App() {
 
@@ -36,7 +37,7 @@ export default function App() {
         >
           <Header setDarkMode={changeTheme} darkMode={darkMode} />
 
-          <Route exact path="/" component={Register} />
+          <Route exact path="/" component={StartPage} />
 
 
           <Route exact path="/register" component={Register} />
