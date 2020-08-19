@@ -3,10 +3,10 @@ import axios from 'axios';
 export const register = (newUser) => {
   return axios
     .post('users/register', {
-      login: newUser.login,
+      username: newUser.username,
       password: newUser.password,
     })
-    .then((res) => {
+    .then((response) => {
       console.log('Registered');
     });
 };
@@ -14,12 +14,12 @@ export const register = (newUser) => {
 export const login = (user) => {
   return axios
     .post('users/login', {
-      login: user.login,
+      username: user.username,
       password: user.password,
     })
-    .then((res) => {
-      localStorage.setItem('usertoken', res.data);
-      return res.data;
+    .then((response) => {
+      localStorage.setItem('usertoken', response.data);
+      return response.data;
     })
     .catch((err) => {
       console.log(err);
