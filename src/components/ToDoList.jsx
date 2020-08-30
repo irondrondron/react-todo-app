@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { createTodo, readTodo, updateTodo, deleteTodo } from './TodoFunctions';
 
 import TodoForm from './TodoForm';
 import TodoTabs from './TodoTabs';
@@ -9,17 +10,35 @@ import TodoComplete from './TodoComplete';
 
 const TodoList = () => {
   const [state, setState] = useState({ todos: [] });
+  useEffect(() => {
+    const token = localStorage.usertoken;
+    readTodo(token).then((response) => {
+      let todos = response.data;
+      setState({ todos });
+    });
+  // }, [setState]);
+  }, [state]);
+  // console.log(state);
 
   const addTodo = (todo) => {
     setState({
       todos: [todo, ...state.todos],
     });
   };
+  console.log(state);
 
   const toggleComplete = (id) => {
+    console.log(id);
     setState((state) => ({
       todos: state.todos.map((todo) => {
         if (todo.id === id) {
+          const token = localStorage.usertoken;
+          const editedTodo = {
+            id: todo.id,
+            complete: !todo.complete,
+          };
+          console.log(editedTodo);
+          updateTodo(token, editedTodo);
           return {
             ...todo,
             complete: !todo.complete,
@@ -33,7 +52,23 @@ const TodoList = () => {
 
   const handleDeleteTodo = (id) => {
     setState((state) => ({
-      todos: state.todos.filter((todo) => todo.id !== id),
+      todos: state.todos.map((todo) => {
+        if (todo.id === id) {
+          const token = localStorage.usertoken;
+          const editedTodo = {
+            id: todo.id,
+            // complete: !todo.complete,
+          };
+          console.log(editedTodo);
+          deleteTodo(token, editedTodo);
+          return {
+            ...todo,
+            // complete: !todo.complete,
+          };
+        } else {
+          return todo;
+        }
+      }),
     }));
   };
 

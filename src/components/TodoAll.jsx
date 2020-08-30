@@ -3,6 +3,7 @@ import { Container } from '@material-ui/core';
 import Todo from './Todo';
 
 const TodoAll = (props) => {
+  console.log(props.state.todos);
   return (
     <Container
       fixed

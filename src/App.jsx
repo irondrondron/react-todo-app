@@ -44,7 +44,6 @@ export default function App() {
           <Route exact path="/login" component={Login} />
           <ProtectedRoute path="/all" component={TodoList} />
 
-         
         </Paper>
       </ThemeProvider>
     </BrowserRouter>

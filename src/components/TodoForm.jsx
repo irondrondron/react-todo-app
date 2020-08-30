@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import shortid from 'shortid';
 import { Paper, Grid, TextField } from '@material-ui/core';
+import { createTodo } from './TodoFunctions';
 
 const TodoForm = (props) => {
   const [state, setState] = useState({ text: '' });
@@ -13,8 +13,20 @@ const TodoForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const newTodo = {
+      // user_id: decoded.id,
+      text: state.text,
+      complete: false,
+    };
+    const token = localStorage.usertoken;
+    createTodo(token, newTodo).then((res) => {
+      if (res) {
+        console.log(res);
+      }
+    });
+
     props.onSubmit({
-      id: shortid.generate(),
+      // id: state.id,
       text: state.text,
       complete: false,
     });
