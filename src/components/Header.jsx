@@ -38,6 +38,8 @@ const Header = ({ darkMode, setDarkMode }) => {
       </MenuItem>
       <MenuItem component={Link} to={'/register'} onClick={handleClose}>
         Register
+      </MenuItem><MenuItem component={Link} to={'/counter'} onClick={handleClose}>
+        Counter
       </MenuItem>
     </div>
   );

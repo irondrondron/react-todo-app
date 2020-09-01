@@ -13,6 +13,7 @@ import Login from './components/Login';
 
 import ProtectedRoute from './components/ProtectedRoute';
 import StartPage from './components/StartPage';
+import Counter from './components/Counter';
 
 export default function App() {
 
@@ -42,6 +43,7 @@ export default function App() {
 
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/counter" component={Counter} />
           <ProtectedRoute path="/all" component={TodoList} />
 
         </Paper>
