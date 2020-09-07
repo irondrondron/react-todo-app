@@ -38,7 +38,8 @@ const Header = ({ darkMode, setDarkMode }) => {
       </MenuItem>
       <MenuItem component={Link} to={'/register'} onClick={handleClose}>
         Register
-      </MenuItem><MenuItem component={Link} to={'/counter'} onClick={handleClose}>
+      </MenuItem>
+      <MenuItem component={Link} to={'/counter'} onClick={handleClose}>
         Counter
       </MenuItem>
     </div>
@@ -46,7 +47,14 @@ const Header = ({ darkMode, setDarkMode }) => {
 
   const userLink = (
     <div>
-      <MenuItem component={Link} to={'/register'} onClick={(handleClose, logOut)}>
+      <MenuItem component={Link} to={'/counter'} onClick={handleClose}>
+        Counter
+      </MenuItem>
+      <MenuItem
+        component={Link}
+        to={'/register'}
+        onClick={(handleClose, logOut)}
+      >
         Logout
       </MenuItem>
     </div>
