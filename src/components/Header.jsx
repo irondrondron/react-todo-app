@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, withRouter, useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { profile } from './UserFunctions';
 import {
   Grid,
   Typography,
@@ -9,12 +11,29 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Button,
 } from '@material-ui/core';
 import { Brightness7, Brightness4, AccountCircle } from '@material-ui/icons';
+import AddIcon from '@material-ui/icons/Add';
 
 const Header = ({ darkMode, setDarkMode }) => {
+  // const token = localStorage.usertoken;
+  // profile(token).then((response) => {
+  //   console.log(response.data);
+  // });
+
   const history = useHistory();
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const userName = useSelector((state) => state.userName);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const token = localStorage.usertoken;
+    profile(token).then((response) => {
+      let username = response.data;
+      dispatch({ type: 'USERNAME', payload: username });
+      console.log(username);
+    });
+  }, []);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -44,6 +63,17 @@ const Header = ({ darkMode, setDarkMode }) => {
       </MenuItem>
     </div>
   );
+  // const token = localStorage.usertoken;
+  // profile(token).then((response) => {
+  //   dispatch({ type: 'USERNAME', payload: response.data });
+  //   console.log(response.data);
+  // });
+  // console.log(response.data);
+  const userNamea = (
+    <Typography >
+      <Box fontWeight="fontWeightBold">{userName.userName}</Box>
+    </Typography>
+  );
 
   const userLink = (
     <div>
@@ -70,6 +100,7 @@ const Header = ({ darkMode, setDarkMode }) => {
             </Typography>
           </Grid>
           <Grid item>
+          {localStorage.usertoken ? userNamea : 'asdasd'}
             <IconButton
               color="inherit"
               onClick={() => {
@@ -79,6 +110,9 @@ const Header = ({ darkMode, setDarkMode }) => {
               {!darkMode ? <Brightness7 /> : <Brightness4 />}
             </IconButton>
 
+            {/* <Typography variant="h6">
+              <Box fontWeight="fontWeightBold">{userName.userName}</Box>
+            </Typography> */}
             <IconButton
               color="inherit"
               aria-haspopup="true"

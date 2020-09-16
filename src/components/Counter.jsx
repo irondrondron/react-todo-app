@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Button, Typography } from '@material-ui/core';
 import RemoveIcon from '@material-ui/icons/Remove';
 import AddIcon from '@material-ui/icons/Add';
 
 const Counter = () => {
-  const [count, setCount] = useState(0);
-
+  // const [count, setCount] = useState(0);
+  const counter = useSelector((state) => state.counter);
+  const dispatch = useDispatch();
+  console.log(counter);
   return (
     <div
       style={{
@@ -18,19 +21,19 @@ const Counter = () => {
       <Button
         variant="outlined"
         color="secondary"
-        onClick={() => setCount(count - 1)}
+        onClick={() => dispatch({ type: 'DECREMENT_COUNTER' })}
       >
-        <RemoveIcon/>
+        <RemoveIcon />
       </Button>
-      <Typography variant="h4" style={{padding:'20px'}}>
-        {count}
+      <Typography variant="h4" style={{ padding: '20px' }}>
+        {counter.counter}
       </Typography>
       <Button
         variant="outlined"
         color="primary"
-        onClick={() => setCount(count + 1)}
+        onClick={() => dispatch({ type: 'INCREMENT_COUNTER' })}
       >
-        <AddIcon/>
+        <AddIcon />
       </Button>
     </div>
   );

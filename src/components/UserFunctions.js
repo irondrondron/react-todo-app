@@ -26,3 +26,22 @@ export const login = (user) => {
       console.log(err);
     });
 };
+
+export const profile = (token) => {
+  return axios
+    .post(
+      'users/profile',
+      {
+        key: 'value',
+      },
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+    // .then((response) => {
+    //   console.log(response);
+    // })
+    .catch((err) => {
+      console.log(err);
+    });
+};
